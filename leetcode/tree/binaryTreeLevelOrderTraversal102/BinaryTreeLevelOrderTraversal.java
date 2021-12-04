@@ -26,7 +26,7 @@ public class BinaryTreeLevelOrderTraversal {
         queue.offer(root);
         while (!queue.isEmpty()){
             List<Integer> level = new ArrayList<>();
-            int levelSize = queue.size();
+            int levelSize = queue.size(); //关键代码，levelSize 即为一层的数量
             for (int i = 1; i <= levelSize ; i++) {
                 TreeNode node = queue.poll();
                 level.add(node.val);

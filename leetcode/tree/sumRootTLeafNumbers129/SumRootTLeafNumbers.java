@@ -17,7 +17,6 @@ public class SumRootTLeafNumbers {
 
     public int sumNumbers(TreeNode root) {
         //该题与257一个思路
-
         List<String> res = new ArrayList<>();
         dfs(root, res, "");
         return res.stream().mapToInt(Integer::parseInt).sum();

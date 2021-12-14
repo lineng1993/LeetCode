@@ -53,7 +53,7 @@ public class ReorderList {
      * @param head LinkedList
      */
     public void reorderList2(ListNode head){
-        // 1. 找到链表重点 876题
+        // 1. 找到链表中点 876题
         ListNode mid = middleNode(head);
         // 2. 反转链表
         ListNode l2 = mid.next;

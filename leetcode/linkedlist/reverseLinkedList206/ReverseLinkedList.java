@@ -22,7 +22,9 @@ public class ReverseLinkedList {
     }
 
     public ListNode reverseListR(ListNode head) {
-        if (head == null) return head;
+        if (head == null || head.next == null) {
+            return head;
+        }
         ListNode last = reverseListR(head.next);
 
         head.next.next = head;

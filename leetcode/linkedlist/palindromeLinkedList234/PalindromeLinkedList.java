@@ -1,6 +1,5 @@
 package linkedlist.palindromeLinkedList234;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import linkedlist.ListNode;
 
 /**

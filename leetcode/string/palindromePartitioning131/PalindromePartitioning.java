@@ -9,6 +9,8 @@ import java.util.*;
  */
 public class PalindromePartitioning {
 
+    private int[][] f;
+
     public static void main(String[] args) {
         System.out.println(new PalindromePartitioning().partition("aab"));
     }
@@ -23,7 +25,7 @@ public class PalindromePartitioning {
         if (len == 0) {
             return res;
         }
-
+        f = new int[len][len];
         // Stack 这个类 Java 的文档里推荐写成 Deque<Integer> stack = new ArrayDeque<Integer>();
         // 注意：只使用 stack 相关的接口
         Deque<String> stack = new ArrayDeque<>();
@@ -51,10 +53,17 @@ public class PalindromePartitioning {
 
 
     private boolean checkPalindrome(char[] charArray, int left, int right) {
+        if (f[left][right] == 1){
+            return true;
+        }else if (f[left][right] == -1){
+            return false;
+        }
         while (left < right) {
             if (charArray[left] != charArray[right]) {
+                f[left][right] = -1;
                 return false;
             }
+            f[left][right] = 1;
             left++;
             right--;
         }

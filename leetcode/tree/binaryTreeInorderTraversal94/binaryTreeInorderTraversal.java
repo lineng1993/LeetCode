@@ -45,12 +45,13 @@ public class binaryTreeInorderTraversal {
         Stack<TreeNode> stack = new Stack<>();
         while (root != null || !stack.isEmpty()) {
             while (root != null) {
-                stack.push(root);
-                root = root.left;
+                stack.push(root); //将访问的节点放进栈
+                root = root.left;  //左
             }
+            //中
             TreeNode node = stack.pop();
             res.add(node.val);
-            root = node.right;
+            root = node.right;  //右
         }
         return res;
     }

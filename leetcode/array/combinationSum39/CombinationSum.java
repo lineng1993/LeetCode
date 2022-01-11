@@ -15,6 +15,11 @@ import java.util.List;
  */
 public class CombinationSum {
 
+    public static void main(String[] args) {
+        int[] nums = {1,2,3,4,5};
+        System.out.println(new CombinationSum().combinationSum(nums, 7));
+    }
+
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
 
@@ -31,14 +36,14 @@ public class CombinationSum {
         }
 
         Deque<Integer> path = new ArrayDeque<>();
-        dfs(candidates, target, 0, len, path, res);
+        backtrack(candidates, target, 0, len, path, res);
         return res;
     }
 
-    private void dfs(int[] candidates, int target, int begin, int len, Deque<Integer> path, List<List<Integer>> res)
+    private void backtrack(int[] candidates, int target, int begin, int len, Deque<Integer> path, List<List<Integer>> res)
     {
         // target 为负数和 0 的时候不再产生新的孩子结点
-        if (target < 0) {
+        if (target < 0) { //剪枝优化
             return;
         }
         //找到满足条件的path
@@ -51,11 +56,9 @@ public class CombinationSum {
 
             path.add(candidates[i]);
 
-            dfs(candidates, target - candidates[i], i, len, path, res);
+            backtrack(candidates, target - candidates[i], i, len, path, res);
 
             path.removeLast();
         }
-
-
     }
 }

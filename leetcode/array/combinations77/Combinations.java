@@ -33,9 +33,30 @@ public class Combinations {
         }
         for (int i = begin; i <= n; i++) {
             path.add(i);
+            //这里经常写错，这里是写i + 1, 老是写错成 begin + 1
             backtrack(res, path, i + 1 , n, k);
             path.remove(path.size() - 1);
         }
     }
+
+    /**
+     *  剪枝优化，n = 4, k = 4时 从 2 开始的遍历已经没有必要了，即剩余数量要大于K才可以
+     *
+     */
+    private void backtrack2(List<List<Integer>> res, List<Integer> path, int begin, int n, int k){
+
+        if (path.size() == k){
+            res.add(new ArrayList<>(path));
+            return;
+        }
+        //搜索起点的上界 + 接下来要选择的元素个数 - 1 = n
+        for (int i = begin; i <= n - (k - path.size()) + 1; i++) {
+            path.add(i);
+            //这里经常写错，这里是写i + 1, 老是写错成 begin + 1
+            backtrack2(res, path, i + 1 , n, k);
+            path.remove(path.size() - 1);
+        }
+    }
+
 
 }

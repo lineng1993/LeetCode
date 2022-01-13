@@ -86,14 +86,14 @@ public class CombinationSum2 {
 
             path.addLast(candidates[i]);
             // 调试语句 ①
-            // System.out.println("递归之前 => " + path + "，剩余 = " + (target - candidates[i]));
+             System.out.println("递归之前 => " + path + "，剩余 = " + (target - candidates[i]));
 
             // 因为元素不可以重复使用，这里递归传递下去的是 i + 1 而不是 i
             dfs(candidates, len, i + 1, target - candidates[i], path, res);
 
             path.removeLast();
             // 调试语句 ②
-            // System.out.println("递归之后 => " + path + "，剩余 = " + (target - candidates[i]));
+             System.out.println("递归之后 => " + path + "，剩余 = " + (target - candidates[i]));
         }
     }
 

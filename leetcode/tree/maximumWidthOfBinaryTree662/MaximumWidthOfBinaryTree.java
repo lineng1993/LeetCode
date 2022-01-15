@@ -18,7 +18,7 @@ public class MaximumWidthOfBinaryTree {
 
 
     public int widthOfBinaryTree(TreeNode root) {
-// 避免异常的产生
+        // 避免异常的产生
         if(root==null){
             return 0;
         }

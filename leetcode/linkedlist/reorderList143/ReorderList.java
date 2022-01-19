@@ -55,7 +55,7 @@ public class ReorderList {
     public void reorderList2(ListNode head){
         // 1. 找到链表中点 876题
         ListNode mid = middleNode(head);
-        // 2. 反转链表
+        // 2. 反转链表,需要注意这里要提前保留指针，因为后边断开了
         ListNode l2 = mid.next;
         mid.next = null;
         l2 = reverse(l2);

@@ -67,6 +67,8 @@ public class ReverseLinkedListii {
 
     /**
      * 比较好理解的一种题解，跟2类似，但代码更好理解，配合解题思路图查看
+     *
+     * https://leetcode-cn.com/problems/reverse-linked-list-ii/solution/java-shuang-zhi-zhen-tou-cha-fa-by-mu-yi-cheng-zho/
      */
     public ListNode reverseBetween3(ListNode head, int left, int right) {
 

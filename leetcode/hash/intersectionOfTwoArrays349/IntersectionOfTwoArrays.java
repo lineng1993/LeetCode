@@ -1,4 +1,4 @@
-package array.intersectionOfTwoArrays349;
+package hash.intersectionOfTwoArrays349;
 
 
 import java.util.*;
@@ -11,7 +11,7 @@ public class IntersectionOfTwoArrays {
     public static void main(String[] args) {
         int[] num1 = {1,2,2,3};
         int[] num2 = {2,3,4,5,6};
-        System.out.println(Arrays.toString(new IntersectionOfTwoArrays().intersection(num1, num2)));
+        System.out.println(Arrays.toString(new IntersectionOfTwoArrays().intersection2(num1, num2)));
 
     }
 
@@ -31,6 +31,25 @@ public class IntersectionOfTwoArrays {
                 }
             }
             visited.add(n1);
+        }
+        int[] ans = new int[res.size()];
+        for (int i = 0; i < res.size(); i++) {
+            ans[i] = res.get(i);
+        }
+        return ans;
+
+    }
+    public int[] intersection2(int[] nums1, int[] nums2) {
+
+        Set<Integer> visited = new HashSet<>();
+        ArrayList<Integer> res = new ArrayList<>();
+        for (int n1 : nums1) {
+            visited.add(n1);
+        }
+        for(int n2 : nums2){
+            if (visited.contains(n2)){
+                res.add(n2);
+            }
         }
         int[] ans = new int[res.size()];
         for (int i = 0; i < res.size(); i++) {

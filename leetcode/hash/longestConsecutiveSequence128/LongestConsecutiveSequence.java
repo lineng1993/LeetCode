@@ -1,4 +1,4 @@
-package array.longestConsecutiveSequence128;
+package hash.longestConsecutiveSequence128;
 
 import java.util.HashSet;
 import java.util.Set;

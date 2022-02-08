@@ -35,7 +35,9 @@ public class Permutations {
         }
         for (int i = 0; i < num.length; i++) {
             if (used[i]) continue;
-            if (i > 0 && num[i] == num[i - 1] && !used[i - 1]) continue;
+            if (i > 0 && num[i] == num[i - 1] && !used[i - 1]){
+                continue;
+            }
             path.add(num[i]);
             System.out.println("递归之前=>" + path);
             used[i] = true;

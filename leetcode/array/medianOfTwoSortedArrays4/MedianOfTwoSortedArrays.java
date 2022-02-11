@@ -8,6 +8,12 @@ import java.util.Arrays;
  */
 public class MedianOfTwoSortedArrays {
 
+    public static void main(String[] args) {
+        int[] num1 = {1,2,3};
+        int[] num2 = {4,5,6};
+        System.out.println(new MedianOfTwoSortedArrays().findMedianSortedArrays2(num1, num2));
+    }
+
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
 
         //一开始思路：不考虑时间复杂度，对两个数组重新排序，取中位数

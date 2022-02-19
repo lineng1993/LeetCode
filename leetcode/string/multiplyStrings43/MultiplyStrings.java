@@ -2,6 +2,7 @@ package string.multiplyStrings43;
 
 /**
  * Medium
+ * 重点题
  * 给定两个以字符串形式表示的非负整数 num1 和 num2，返回 num1 和 num2 的乘积，它们的乘积也表示为字符串形式。
  */
 public class MultiplyStrings {
@@ -40,7 +41,7 @@ public class MultiplyStrings {
     private String addString(String num1, String num2){
         StringBuilder res = new StringBuilder();
         int i = num1.length() - 1, j = num2.length() - 1, add = 0;
-        while (i >= 0 || j >=0 || add != 0){
+        while (i >= 0 || j >= 0 || add != 0){
             int x = i >= 0 ? num1.charAt(i) - '0' : 0;
             int y = j >= 0 ? num2.charAt(j) - '0' : 0;
             int sum = x + y + add;

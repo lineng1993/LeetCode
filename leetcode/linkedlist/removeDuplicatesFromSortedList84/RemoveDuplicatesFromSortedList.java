@@ -30,7 +30,7 @@ public class RemoveDuplicatesFromSortedList {
             if (cur.next.val == cur.next.next.val){
                 int x = cur.next.val;
                 /*
-                 * 不能按照84题一遍遍循环了，需要一次性全部删掉
+                 * 不能按照83题一遍遍循环了，需要一次性全部删掉
                  */
                 while (cur.next != null && cur.next.val == x){
                     cur.next = cur.next.next;

@@ -1,7 +1,7 @@
 package array.tree.convertSortedListToBinarySearchTree109;
 
 
-import array.tree.TreeNode;
+import tree.TreeNode;
 import linkedlist.ListNode;
 
 /**

@@ -7,7 +7,7 @@ package greedy.jumpGame55;
 public class JumpGame {
 
     public static void main(String[] args) {
-        int[] nums = {100,2,1,0,4};
+        int[] nums = {3,2,1,0,4};
         System.out.println(new JumpGame().canJump(nums));
     }
 

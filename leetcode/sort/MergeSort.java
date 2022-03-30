@@ -5,6 +5,12 @@ package sort;
  */
 public class MergeSort {
 
+    public static void main(String[] args) {
+
+        int[] nums = {7,3,2,6,0,1,5,4};
+        new MergeSort().sort(nums);
+    }
+
 
     private int[] aux;
     private void sort(int[] nums){

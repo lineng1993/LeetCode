@@ -8,6 +8,14 @@ import linkedlist.ListNode;
  */
 public class ReverseLinkedListii {
 
+
+    public static void main(String[] args) {
+
+        ListNode head = ListNode.mkListNode(5);
+        System.out.println(new ReverseLinkedListii().reverseBetween3(head, 2, 4));
+
+    }
+
     public ListNode reverseBetween(ListNode head, int left, int right){
 
         /**

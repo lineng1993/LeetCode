@@ -10,6 +10,13 @@ import linkedlist.ListNode;
  */
 public class SortList {
 
+
+    public static void main(String[] args) {
+
+        ListNode head = ListNode.mkListNode(1,2,3,4,5);
+        System.out.println(new SortList().sortList(head));
+    }
+
     public ListNode sortList(ListNode head) {
 
         /*
@@ -26,35 +33,39 @@ public class SortList {
          * 3：将两个排序后的子链表合并，得到完整的排序后的链表（21题）
          */
 
-        return sortList(head, null);
-
-    }
-
-    public ListNode sortList(ListNode head, ListNode tail){
-        if (head == null) return null;
-        //递归终止
-        if (head.next == tail){
-            head.next = null;
+        // 1、递归结束条件
+        if (head == null || head.next == null) {
             return head;
         }
 
-        ListNode mid = middleNode(head);
+        // 2、找到链表中间节点并断开链表 & 递归下探
+        ListNode midNode = middleNode(head);
+        ListNode rightHead = midNode.next;
+        midNode.next = null;
 
-        ListNode l1 = sortList(head, mid);
-        ListNode l2 = sortList(mid, tail);
-        return merge(l1, l2);
+        ListNode left = sortList(head);
+        ListNode right = sortList(rightHead);
+
+        // 3、当前层业务操作（合并有序链表）
+        return mergeTwoLists(left, right);
+
     }
 
-    private ListNode middleNode(ListNode head){
-        ListNode slow = head, fast = head;
-        while (fast != null && fast.next != null){
+    private ListNode middleNode(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode slow = head;
+        ListNode fast = head.next.next;
+
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
         return slow;
     }
 
-    private ListNode merge(ListNode l1, ListNode l2){
+    private ListNode mergeTwoLists(ListNode l1, ListNode l2){
         ListNode dummy = new ListNode(-1);
         ListNode cur = dummy, p1 = l1, p2 = l2;
         while (p1 != null && p2 != null){

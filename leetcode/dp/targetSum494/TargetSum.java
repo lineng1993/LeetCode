@@ -1,5 +1,8 @@
 package dp.targetSum494;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Medium
  * 给你一个整数数组 nums 和一个整数 target 。
@@ -18,7 +21,7 @@ public class TargetSum {
 
 
     public int findTargetSumWays(int[] nums, int target) {
-        return process1(nums, 0, target);
+        return process2(nums, 0, target, new HashMap<>());
     }
 
     /**
@@ -29,8 +32,31 @@ public class TargetSum {
         if (index == arr.length){ //base case ：全部遍历完成 如果rest = 0,说明找到一种方法，否则找不到
             return rest == 0 ? 1 : 0;
         }
+        System.out.println("计算Index[" + index + "]rest=" + rest);
         //当前位置选择+号，当前位置的理解很重要,那么后续位置rest应该减去当前值，反之同理       //当前位置选择减号
         return process1(arr, index + 1, rest - arr[index])  + process1(arr, index + 1, rest + arr[index]);
+    }
+
+    /**
+     * process1 中存在大量重复计算
+     * index rest 可以确定一个值，不需要反复计算
+     */
+    private int process2(int[] arr, int index, int rest, Map<Integer/*index*/, Map<Integer/*rest*/, Integer/*res count*/>> map){
+        //已经计算好了
+        if (map.containsKey(index) && map.get(index).containsKey(rest)){
+            System.out.println("缓存Index[" + index + "]rest=" + rest);
+            return map.get(index).get(rest);
+        }
+        //重新计算
+        if (index == arr.length){
+            return rest == 0 ? 1 : 0;
+        }
+        System.out.println("计算Index[" + index + "]rest=" + rest);
+        //当前位置选择+号，当前位置的理解很重要,那么后续位置rest应该减去当前值，反之同理       //当前位置选择减号
+        int res = process2(arr, index + 1, rest - arr[index], map)  + process2(arr, index + 1, rest + arr[index], map);
+        map.computeIfAbsent(index, k -> new HashMap<>());
+        map.get(index).put(rest, res);
+        return res;
     }
 
 

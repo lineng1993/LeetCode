@@ -9,12 +9,13 @@ import java.util.Stack;
 /**
  * @author lin  2021/11/29 19:48
  */
-public class binaryTreeInorderTraversal {
+public class BinaryTreeInorderTraversal {
 
 
     public static void main(String[] args) {
 
-        System.out.println(TreeNode.int2TreeNode(1,2,3,4,5,6,7,8));
+        TreeNode root = TreeNode.int2TreeNode(1,2,3,4,5,6,7,8);
+        System.out.println(new BinaryTreeInorderTraversal().inorderTraversalNoR(root));
     }
 
     /**

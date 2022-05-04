@@ -2,6 +2,11 @@ package tree.lowestCommonAncestorOfABinaryTree236;
 
 import tree.TreeNode;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * @author lin  2021/12/1 19:14
  */
@@ -23,7 +28,7 @@ public class LCA {
         node1.right = node4;
 
         node4.right = node5;
-        System.out.println(new LCA().lowestCommonAncestor(root, node3, node4));
+        System.out.println(new LCA().lowestCommonAncestor2(root, node3, node4));
 
 
     }
@@ -54,6 +59,46 @@ public class LCA {
         if(right == null) return left; // 4.
 
         return root; // 2. if(left != null and right != null)
+    }
+
+    /**
+     * 上述方式虽然是标准的二叉树写法，但是非常不好理解，这种写法是左神的一种简单思路
+     * 1. 子节点全部链接到父节点（利用map 存储每个节点的父节点）；
+     * 2. 生成p,q的向上链表存入set,找到交集
+     */
+    public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
+        Map<TreeNode, TreeNode> map = new HashMap<>();
+        map.put(root, root);
+        preOrder(root, map);
+
+        Set<TreeNode> setP = new HashSet<>();
+        setP.add(p);
+        TreeNode cur = p;
+        while (cur != map.get(cur)){ // 只要没遍历到root;
+            setP.add(cur);
+            cur = map.get(cur); //向上遍历
+        }
+        setP.add(root);
+        //setP 已经包含全部节点了，遍历q
+        cur = q;
+        while (cur != map.get(cur)){
+            if (setP.contains(cur)){
+                return cur;
+            }
+            cur = map.get(cur);
+        }
+        return root;
+    }
+
+    private void preOrder(TreeNode root,  Map<TreeNode, TreeNode> map){
+
+        if (root == null) return;
+        if (root.left != null)
+            map.put(root.left, root);
+        if (root.right != null)
+            map.put(root.right, root);
+        preOrder(root.left, map);
+        preOrder(root.right, map);
     }
 
 }

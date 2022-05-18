@@ -8,7 +8,7 @@ public class FibonacciNumber {
 
     public static void main(String[] args) {
 
-        System.out.println(new FibonacciNumber().fib2(10));
+        System.out.println(new FibonacciNumber().fib3(10, new int[11]));
         System.out.println(new FibonacciNumber().fib(10));
 
     }
@@ -44,5 +44,31 @@ public class FibonacciNumber {
            q = r;
         }
         return r;
+    }
+
+    public int fib3(int n, int[] dp) {
+
+        /**
+         * 只跟 n 有关：改记忆化搜索
+         */
+        // 1. dp公式  dp[n] = dp[n - 1] + dp[n-2];
+
+        /**
+         * 一维dp表，只跟前面2位有关系，很好改写成fib了
+         */
+        if (n < 2) {
+            dp[n] = n;
+            return n;
+        }
+        int f1 = dp[n - 1];
+        int f2 = dp[n - 2];
+        if (f1 == 0){
+            dp[n - 1] = fib3(n - 1, dp);
+        }
+        if (f2 == 0){
+            dp[n - 2] = fib3(n -2, dp);
+        }
+        dp[n] = dp[n - 1] + dp[n - 2];
+        return dp[n];
     }
 }

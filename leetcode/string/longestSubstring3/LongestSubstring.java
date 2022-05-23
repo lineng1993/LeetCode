@@ -1,5 +1,6 @@
 package string.longestSubstring3;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,7 +11,7 @@ import java.util.Set;
 public class LongestSubstring {
     public static void main(String[] args) {
 
-        System.out.println(new LongestSubstring().lengthOfLongestSubstring("abcabcbb"));
+        System.out.println(new LongestSubstring().lengthOfLongestSubstring2("abcabcbb"));
         System.out.println(new LongestSubstring().lengthOfLongestSubstring("aaa"));
     }
 
@@ -35,6 +36,22 @@ public class LongestSubstring {
             ans = Math.max(ans, rk - i + 1);
         }
         return ans;
+    }
+
+    public int lengthOfLongestSubstring2(String s) {
+
+        // abca -> loc[97] = 0, loc[98] = 1, loc[99] = 2, 更新loc[97] = 3
+        int[] loc = new int[128]; // 只包含数字，字母，符号，可以数组优化，记录字符的index（最大位置）
+        Arrays.fill(loc, -1);
+        int n = s.length();
+        int res = 0, start = 0;
+        for (int i = 0; i < n; i++) {
+            int index = s.charAt(i);
+            start = Math.max(start, loc[index] + 1);
+            res = Math.max(res, i - start + 1);
+            loc[index] = i;
+        }
+        return res;
     }
 
 }

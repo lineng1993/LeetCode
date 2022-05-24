@@ -42,7 +42,7 @@ public class SlidingWindowMaximum {
         int n = nums.length;
         int resSize = n - k + 1;
 
-        //Deque 只保留最大值
+        //Deque 只保留最大值，这里需要双端队列，会双向操作
         Deque<Integer> deque = new LinkedList<>();
         for (int i = 0; i < k; ++i) {
             while (!deque.isEmpty() && nums[i] >= nums[deque.peekLast()]) {
@@ -57,7 +57,7 @@ public class SlidingWindowMaximum {
                 deque.pollLast();
             }
             deque.offerLast(i);
-            //超出窗口大小
+            //上面需要保存坐标，这里要拿出来判断是否超出窗口大小
             while (deque.peekFirst() <= i - k){
                 deque.pollFirst();
             }

@@ -28,4 +28,21 @@ public class RemoveDuplicatesFromSortedArray {
         }
         return slow;
     }
+
+    public int removeDuplicates2(int[] nums) {
+
+        int n = nums.length;
+        if (n == 0) {
+            return 0;
+        }
+        int fast = 0, slow = 0;  //labuladong 博客的解法，理解了双指针从0肯定也是可以的，从1开始反而不好理解了
+        while (fast < n){
+            if (nums[fast] != nums[slow]){
+                slow++;
+                nums[slow] = nums[fast];
+            }
+            fast++;
+        }
+        return slow + 1;
+    }
 }

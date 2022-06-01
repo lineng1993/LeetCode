@@ -29,8 +29,24 @@ public class MinSubArrayLen {
                 sum += nums[r];
                 if (sum >= k){
                     res = Math.min(res, r - i + 1);
+                    break;
                 }
                 r++;
+            }
+        }
+        return res == Integer.MAX_VALUE ? 0 : res;
+    }
+    public int minSubArrayLen2(int k, int[] nums){
+        int res = Integer.MAX_VALUE;
+        int n = nums.length;
+        int sum = 0, left = 0;
+
+        for (int right = 0; right < n; right++) {
+            sum += nums[right];
+            while (left <= right && sum>= k){
+                res = Math.min(res, right - left + 1);
+                sum -= nums[left];
+                left++;
             }
         }
         return res == Integer.MAX_VALUE ? 0 : res;

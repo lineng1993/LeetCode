@@ -10,8 +10,8 @@ public class QuickSort {
 
     public static void main(String[] args) {
 
-        int[] nums = {-2,2,3,4,2,1};
-        new QuickSort().quickSort(nums, 0, nums.length - 1);
+        int[] nums = {6,2,1,4,7,9,3,10,5,8};
+//        new QuickSort().quickSort(nums, 0, nums.length - 1);
         System.out.println(Arrays.toString(nums));
 
     }
@@ -45,4 +45,26 @@ public class QuickSort {
         nums[j] = tmp;
     }
 
+    /**
+     * 荷兰国旗问题, 数组分成三块,左侧 < target,中间 == target, 右侧 > target
+     *  int[] nums = {-2,2,3,4,2,1};
+     */
+
+    private void rePartition(int[] nums, int target){
+
+        int n = nums.length;
+        int i = 0, l = 0, r = n - 1;
+        while (i <= r){
+            if (nums[i] < target){
+                swap(nums, i, l);
+                l++;
+                i++;
+            }else if (nums[i] == target){
+                i++;
+            }else {
+                swap(nums, i, r);
+                r--;
+            }
+        }
+    }
 }

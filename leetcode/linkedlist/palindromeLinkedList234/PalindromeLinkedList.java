@@ -10,7 +10,7 @@ public class PalindromeLinkedList {
 
     public static void main(String[] args) {
         System.out.println(new PalindromeLinkedList().isPalindrome(ListNode.mkListNode(10)));
-        System.out.println(new PalindromeLinkedList().isPalindrome2(ListNode.mkListNode(1,2)));
+        System.out.println(new PalindromeLinkedList().isPalindrome2(ListNode.mkListNode(1,2,1)));
         System.out.println(new PalindromeLinkedList().isPalindrome(ListNode.mkListNode(2,1)));
     }
 

@@ -1,8 +1,6 @@
 package string.longestSubstring3;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Medium
@@ -11,7 +9,7 @@ import java.util.Set;
 public class LongestSubstring {
     public static void main(String[] args) {
 
-        System.out.println(new LongestSubstring().lengthOfLongestSubstring2("abcabcbb"));
+        System.out.println(new LongestSubstring().lengthOfLongestSubstring2("abcaacbb"));
         System.out.println(new LongestSubstring().lengthOfLongestSubstring("aaa"));
     }
 
@@ -47,9 +45,27 @@ public class LongestSubstring {
         int res = 0, start = 0;
         for (int i = 0; i < n; i++) {
             int index = s.charAt(i);
-            start = Math.max(start, loc[index] + 1);
+            start = Math.max(start, loc[index] + 1); // 跳出重复区间：ex 'abcaa', start遇到 第三个 a 的时候start需要跳到第三个a才算脱离空间
             res = Math.max(res, i - start + 1);
             loc[index] = i;
+        }
+        return res;
+    }
+    //方法2的hashmap版本
+    public int lengthOfLongestSubstring3(String s) {
+
+        // abca -> loc[97] = 0, loc[98] = 1, loc[99] = 2, 更新loc[97] = 3
+        Map<Character, Integer> loc = new HashMap<>(256);
+        int n = s.length();
+        int res = 0, start = 0;
+        for (int i = 0; i < n; i++) {
+
+            char c = s.charAt(start);
+            if (loc.containsKey(c)){
+                start = Math.max(loc.get(c) + 1, start);
+            }
+            res = Math.max(res, i - start + 1);
+            loc.put(s.charAt(i), i);
         }
         return res;
     }

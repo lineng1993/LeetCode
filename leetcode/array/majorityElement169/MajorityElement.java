@@ -15,7 +15,7 @@ public class MajorityElement {
         System.out.println(new MajorityElement().majorityElement(nums));
 
         int[] nums1 = {3,2,3};
-        System.out.println(new MajorityElement().majorityElement(nums1));
+        System.out.println(new MajorityElement().majorityElement2(nums1));
     }
 
 
